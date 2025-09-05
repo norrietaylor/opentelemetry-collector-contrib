@@ -1,0 +1,37 @@
+dist:
+  module: github.com/open-telemetry/opentelemetry-collector-contrib/cmd/otelcontribcol
+  name: norrie-otelcol
+  description: Custom OpenTelemetry Collector for Windows Event Logs with Elasticsearch export
+  version: 0.134.0-dev
+  output_path: ./cmd/otelcontribcol
+
+extensions:
+  - gomod: go.opentelemetry.io/collector/extension/zpagesextension v0.134.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension v0.134.0
+
+exporters:
+  - gomod: go.opentelemetry.io/collector/exporter/debugexporter v0.134.0
+  - gomod: go.opentelemetry.io/collector/exporter/nopexporter v0.134.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/elasticsearchexporter v0.134.0
+
+processors:
+  - gomod: go.opentelemetry.io/collector/processor/batchprocessor v0.134.0
+  - gomod: go.opentelemetry.io/collector/processor/memorylimiterprocessor v0.134.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor v0.134.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor v0.134.0
+
+receivers:
+  - gomod: go.opentelemetry.io/collector/receiver/nopreceiver v0.134.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/windowseventlogreceiver v0.134.0
+
+connectors:
+  - gomod: go.opentelemetry.io/collector/connector/forwardconnector v0.134.0
+
+providers:
+  - gomod: go.opentelemetry.io/collector/confmap/provider/envprovider v1.40.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/fileprovider v1.40.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/httpprovider v1.40.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/httpsprovider v1.40.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/yamlprovider v1.40.0
+
+replaces:
